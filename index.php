@@ -23,9 +23,14 @@ require_once 'core/init.php';
 
 // inserting 
 
-$user = DB::getInstance()->update('users', 3, array(
-    'username' => 'dale',
-    'password' => 'newpassword',
-    'name' => 'Dale Garrett'
+//$user = DB::getInstance()->update('users', 3, array(
+//    'username' => 'dale',
+//    'password' => 'newpassword',
+//    'name' => 'Dale Garrett'
+//
+//));
 
-));
+
+if(Session::exists('success')) {
+    echo Session::flash('success');
+}

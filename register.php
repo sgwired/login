@@ -3,7 +3,6 @@ require_once 'core/init.php';
  
 if(Input::exists()){
    if(Token::check(Input::get('token'))) { 
-       echo ' I was run';
    $validate = new Validate();
    $validation = $validate->check($_POST, array(
       'username' => array(
@@ -26,8 +25,9 @@ if(Input::exists()){
           'max' => 50
       ), 
    ));
-   if($validate->passed()){
-      echo "Passeed";
+   if($validation->passed()){
+       Session::flash("success", "You registered successfully!");
+       header('location: index.php');
    } else {
         foreach($validation->errors() as $error) {
             echo $error, '<br>';
