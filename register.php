@@ -1,6 +1,9 @@
 <?php
 require_once 'core/init.php';
+ 
 if(Input::exists()){
+   if(Token::check(Input::get('token'))) { 
+       echo ' I was run';
    $validate = new Validate();
    $validation = $validate->check($_POST, array(
       'username' => array(
@@ -30,6 +33,7 @@ if(Input::exists()){
             echo $error, '<br>';
         }
    }
+   }
 }
 ?>
 <form action="" method="post">
@@ -49,5 +53,6 @@ if(Input::exists()){
         <label for="name">Name</label>
         <input type="text" name="name" id="name" value="<?php echo escape(Input::get('name'));?>" autocomplete="off">
     </div>
+    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" >
     <input type="submit" value="Register">
 </form>
